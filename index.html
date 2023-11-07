@@ -5,23 +5,27 @@
 </head>
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v6.js"></script>
-<div class="modal" id="myModal">
-    <div class="modal-content" id="modalContent">
-        <span class="close">&times;</span>
-        <div id="modalContentText"></div>
-    </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/d3plus@2"></script>
+
 <div class="float-container">
   <div class="float-child1">
     <div id="rosa_chart"></div>
+    <div class="flourish-embed flourish-bar-chart-race" data-src="visualisation/15644133"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
   </div>
 
 
   <div class="float-child2">
     <!-- Slideshow container -->
 <div class="slideshow-container">
+  <div class="modal" id="myModal">
+      <div class="modal-content" id="modalContent">
+          <span class="close">&times;</span>
+          <div id="modalContentText"></div>
+      </div>
+  </div>
     <div class="mySlides fade">
-      <div id="line_chart" style="width:100%"></div>
+      <div id="line_chart" style="width:100%">
+      </div>
     </div>
 
     <div class="mySlides fade">
@@ -42,4 +46,5 @@
 
   <div id="bump_chart"></div>
 
+<script src = "set_up.js"></script>
 <script src = "chart.js"></script>

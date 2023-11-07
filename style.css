@@ -6,11 +6,12 @@
 }
 
 .float-child1 {
-  width: 25%; /* Set the width of each box */
+  width: 28%; /* Set the width of each box */
   float: left; /* Float boxes to the left */
   margin: 5px;
   padding: 0px;
   box-sizing: border-box;
+
 }
 
 .float-child2 {
@@ -22,7 +23,8 @@
 }
 .modal {
     display: none;
-    position: fixed;
+    position: absolute;
+    float: left;
     z-index: 1;
     left: 0;
     top: 0;
@@ -33,11 +35,13 @@
 }
 
 .modal-content {
+    top: 0;
     background-color: rgba(240,240,240, 1);
     margin: 10% auto;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #888;
-    width: 50%;
+    width: 60%;
+    height: 70%;
 }
 * {box-sizing:border-box}
 
@@ -110,34 +114,39 @@
   to {opacity: 1}
 }
 
-.line.O3 {
-    stroke-width: 2; /* Line width for class "A" */
-    stroke-dasharray: 5, 5; /* Dashed pattern for class "A" */
-}
-
-.line.PM2.5 {
-    stroke-width: 3; /* Line width for class "B" */
-
-}
-
-.line.NO2 {
-    stroke-width: 2; /* Line width for class "A" */
-    stroke-dasharray: 5, 5; /* Dashed pattern for class "A" */
-}
-
-.line.PM10{
-    stroke-width: 3; /* Line width for class "B" */
-}
-
-.line.CO {
-    stroke-width: 2; /* Line width for class "A" */
-    stroke-dasharray: 5, 5; /* Dashed pattern for class "A" */
-}
-
-.line.SO2{
-    stroke-width: 3; /* Line width for class "B" */
-}
 
 .axis{
-  font-size: 14px;
+  font-size: 16px;
+  font-family:sans-serif;
+}
+.x-axis{
+  font-size: 16px;
+  font-family:sans-serif;
+}
+.pullution-axis{
+  font-size: 22px;
+  font-weight: 500;
+  font-family:sans-serif;
+}
+.Month-annotate{
+  font-size: 22px;
+  font-weight: 500;
+  font-family:sans-serif;
+}
+.legend{
+  font-size: 22px;
+  font-family:sans-serif;
+}
+.rosa_text{
+  font-size:26px;
+  font-weight:600;
+  text-anchor:middle;
+  font-family:sans-serif;
+}
+.compare_box{
+  stroke-dasharray:5, 5;
+  stroke: black;
+  stroke-width: 3;
+  fill:none;
+
 }
