@@ -111,12 +111,13 @@ var x_line = d3.scaleTime()
 
 var health_list = ['Good',"Moderate","Sensitive","Unhealthy","Very Unhealthy"]
 var emoji = ['😃','🤨','🧐','🥴','😷']
-var y_axis_length = 800- margin2.top - margin2.bottom;
+
+var y_axis_length = y_axis_L- margin2.top - margin2.bottom;
 svg2.append("g")
 .attr("transform", `translate(0, ${y_axis_length})`)
 .call(d3.axisBottom(x_line).ticks(5))
 .attr("class","x-axis");
- const y_domain = 300;//(Math.ceil((d3.max(data, function(d){ return +d.Value; }))/50))*50;
+ const y_domain = 250;//(Math.ceil((d3.max(data, function(d){ return +d.Value; }))/50))*50;
  console.log(y_domain)
 // Add Y axis
 var y_line = d3.scaleLinear()
@@ -501,21 +502,62 @@ function dragged(event, d) {
 
 // Drag end event handler
 function dragEnded(event, d) {
+
+
     d3.select(this).attr("transform", "translate(" + currentP[0] + "," + currentP[1] + ")");
     d3.select(this).classed("active", false);
     svg2.selectAll(".clone").remove()
+    fall_area_svg_M.append("text")
+    .text("AQI Change")
+    .attr("x",0)
+    .attr("y",-100)
+    .attr("text-anchor", "middle")
+
+    fall_area_svg_M.append("text")
+    .text("Driving Factor")
+    .attr("x",0)
+    .attr("y",-20)
+    .attr("text-anchor", "middle")
+
     if (event.x >= fall_area_x_L
     && event.x <= fall_area_x_L+fall_area_width
     && event.y >= fall_area_y_L
     && event.y <= fall_area_y_L+fall_area_height){
-      create_rosa(fall_area_svg_L, d)
+      var res = create_rosa(fall_area_svg_L, d)
+      left_g.selectAll("*").remove()
+      left_g.append("text")
+      .text(res[0])
+      .attr("x",-40)
+      .attr("y",-60)
+      .attr("fill", color_text(max_value))
+      .attr("class","rosa_text")
 
+      left_g.append("text")
+      .text(res[1])
+      .attr("x",-50)
+      .attr("y",20)
+      .attr("fill", color_text(max_value))
+      .attr("class","rosa_text")
 }
     else if (event.x >= fall_area_x_R
     && event.x <= fall_area_x_R+fall_area_width
     && event.y >= fall_area_y_R
     && event.y <= fall_area_y_R+fall_area_height){
-      create_rosa(fall_area_svg_R, d)
+      var res = create_rosa(fall_area_svg_R, d)
+      right_g.selectAll("*").remove()
+      right_g.append("text")
+      .text(res[0])
+      .attr("x",40)
+      .attr("y",-60)
+      .attr("fill", color_text(max_value))
+      .attr("class","rosa_text")
+
+      right_g.append("text")
+      .text(res[1])
+      .attr("x",50)
+      .attr("y",20)
+      .attr("fill", color_text(max_value))
+      .attr("class","rosa_text")
     }
 
     console.log('dragEnded')
@@ -524,6 +566,7 @@ function create_rosa(svg,d){
       svg.selectAll("*").remove();
       max_y = 0
       max_value = 0
+      var factor = ''
       // recover the option that has been chosen
       var selectedOption = d[0].toDateString();
       console.log(selectedOption)
@@ -597,6 +640,7 @@ function create_rosa(svg,d){
                   for(i in AQI_values){
                     if(AQI_values[i].Date.toDateString() == d.Date.toDateString()){
                     if( d.Type==AQI_values[i]['DFactor']){
+                      factor = d.Type
                       return "#000000";
                     }
                     else{return "none"}
@@ -744,6 +788,9 @@ function create_rosa(svg,d){
               .text(d[0].toDateString())
               .attr("fill", color_text(max_value))
               .attr("class","rosa_text")
+
+        return [max_value, factor];
+
 
 }
     // Function to parse the transform attribute and extract the position

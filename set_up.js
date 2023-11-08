@@ -144,7 +144,7 @@ var rect = divElement.getBoundingClientRect();
 // Get the x and y coordinates of the div element relative to the viewport
 var divX = rect.left;
 var divY = rect.top;
-
+var y_axis_L = 800
 var fall_area_width = 550
 var fall_area_height = 600
 
@@ -153,7 +153,7 @@ var fall_area_L = svg2.append("svg")
     .attr("width", fall_area_width)
     .attr("height", fall_area_height)
     .attr("x",0)
-    .attr("y",800)
+    .attr("y",y_axis_L-20)
 var fall_area_x_L = parseFloat(fall_area_L.attr("x"))
 var fall_area_y_L = parseFloat(fall_area_L.attr("y"))
 
@@ -175,7 +175,7 @@ var fall_area_M = svg2.append("svg")
     .attr("width", fall_area_width_M)
     .attr("height", fall_area_height_M)
     .attr("x",fall_area_width+10)
-    .attr("y",800)
+    .attr("y",y_axis_L-20)
 var fall_area_x_M = parseFloat(fall_area_M.attr("x"))
 var fall_area_y_M = parseFloat(fall_area_M.attr("y"))
 
@@ -184,19 +184,20 @@ fall_area_M.append("rect")
     .attr("height", fall_area_height_M)
     .attr("x", 0)
     .attr("y", 0)
-    .attr("class","compare_box")
+    .attr("fill","none")
+
 
 var fall_area_svg_M = fall_area_M.append("g")
     .attr("transform", `translate(${fall_area_width_M/2},${10+fall_area_height_M/2})`); // Add 100 on Y translation, cause upper bars are longer
-
-
+    var left_g = fall_area_svg_M.append("g")
+    var right_g = fall_area_svg_M.append("g")
 
 var fall_area_R = svg2.append("svg")
 .attr("class","new_svg")
     .attr("width", fall_area_width)
     .attr("height", fall_area_height)
     .attr("x",fall_area_x_M+10+fall_area_width_M)
-    .attr("y",800)
+    .attr("y",y_axis_L-20)
 var fall_area_x_R = parseFloat(fall_area_R.attr("x"))
 var fall_area_y_R = parseFloat(fall_area_R.attr("y"))
 
